@@ -28,5 +28,13 @@ COPY . .
 # Make port 80 available for links and/or publish
 EXPOSE 80
 
+# Datadog Tags
+# DD_SERVICE sets the "service" name in Datadog
+ENV DD_SERVICE vote
+# DD_ENV sets the "env" name in Datadog
+ENV DD_ENV sandbox
+# DD_VERSION sets the "version" number in Datadog 
+ENV DD_VERSION 1.0
+
 # Define our command to be run when launching the container
 CMD ["gunicorn", "app:app", "-b", "0.0.0.0:80", "--log-file", "-", "--access-logfile", "-", "--workers", "4", "--keep-alive", "0"]
